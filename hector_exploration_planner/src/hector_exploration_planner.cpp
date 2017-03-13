@@ -127,8 +127,8 @@ void HectorExplorationPlanner::dynRecParamCallback(hector_exploration_planner::E
 bool HectorExplorationPlanner::makePlan(const geometry_msgs::PoseStamped &start, const geometry_msgs::PoseStamped &original_goal, std::vector<geometry_msgs::PoseStamped> &plan){
 
   this->setupMapData();
-
   // do exploration? (not used anymore? -> call doExploration())
+  return doExploration(start,plan);
 
   if ((original_goal.pose.orientation.w == 0.0) && (original_goal.pose.orientation.x == 0.0) &&
   (original_goal.pose.orientation.y == 0.0) && (original_goal.pose.orientation.z == 0.0)){
