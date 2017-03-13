@@ -29,28 +29,26 @@
 #include <hector_exploration_planner/hector_exploration_base_global_planner_plugin.h>
 
 //PLUGINLIB_DECLARE_CLASS(hector_exploration_planner, HectorExplorationBaseGlobalPlannerPlugin, hector_exploration_planner::HectorExplorationBaseGlobalPlannerPlugin, nav_core::BaseGlobalPlanner);
-//using namespace hector_exploration_planner;
+PLUGINLIB_EXPORT_CLASS(hector_exploration_planner::HectorExplorationBaseGlobalPlannerPlugin, nav_core::BaseGlobalPlanner);
+using namespace hector_exploration_planner;
 
-namespace hector_exploration_planner {
-	PLUGINLIB_EXPORT_CLASS(hector_exploration_planner::HectorExplorationBaseGlobalPlannerPlugin, nav_core::BaseGlobalPlanner);
-	HectorExplorationBaseGlobalPlannerPlugin::HectorExplorationBaseGlobalPlannerPlugin()
-	{
-	  exploration_planner = new HectorExplorationPlanner();
-	}
-
-	HectorExplorationBaseGlobalPlannerPlugin::~HectorExplorationBaseGlobalPlannerPlugin()
-	{
-	  delete exploration_planner;
-	}
-
-	bool HectorExplorationBaseGlobalPlannerPlugin::makePlan(const geometry_msgs::PoseStamped& start,
-	                      const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan)
-	{
-	  return exploration_planner->makePlan(start, goal, plan);
-	}
-
-	void HectorExplorationBaseGlobalPlannerPlugin::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros)
-	{
-	  exploration_planner->initialize(name, costmap_ros);
-	}	
+HectorExplorationBaseGlobalPlannerPlugin::HectorExplorationBaseGlobalPlannerPlugin()
+{
+  exploration_planner = new HectorExplorationPlanner();
 }
+
+HectorExplorationBaseGlobalPlannerPlugin::~HectorExplorationBaseGlobalPlannerPlugin()
+{
+  delete exploration_planner;
+}
+
+bool HectorExplorationBaseGlobalPlannerPlugin::makePlan(const geometry_msgs::PoseStamped& start,
+                      const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan)
+{
+  return exploration_planner->makePlan(start, goal, plan);
+}
+
+void HectorExplorationBaseGlobalPlannerPlugin::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros)
+{
+  exploration_planner->initialize(name, costmap_ros);
+}	
