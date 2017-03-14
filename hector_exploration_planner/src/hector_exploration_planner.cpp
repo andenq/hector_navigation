@@ -128,7 +128,7 @@ bool HectorExplorationPlanner::makePlan(const geometry_msgs::PoseStamped &start,
 
   this->setupMapData();
   // do exploration? (not used anymore? -> call doExploration())
-  return doExploration(start,plan);
+  //return doExploration(start,plan);
 
   if ((original_goal.pose.orientation.w == 0.0) && (original_goal.pose.orientation.x == 0.0) &&
   (original_goal.pose.orientation.y == 0.0) && (original_goal.pose.orientation.z == 0.0)){
@@ -249,8 +249,10 @@ bool HectorExplorationPlanner::doExploration(const geometry_msgs::PoseStamped &s
   }
 
   if(!getTrajectory(start,goals,plan)){
-    ROS_INFO("[hector_exploration_planner] exploration: could not plan to frontier, starting inner-exploration");
-    return doInnerExploration(start,plan);
+    ROS_INFO("[hector_exploration_planner] exploration: could not plan to frontier, returning false, and probably crashing");
+    //ROS_INFO("[hector_exploration_planner] exploration: could not plan to frontier, starting inner-exploration");
+    //return doInnerExploration(start,plan);
+    return false;
   }
 
   // update previous goal
